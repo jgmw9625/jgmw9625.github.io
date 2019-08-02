@@ -9,24 +9,24 @@ xhr1.send();
 xhr1.onload = function() {
     data = JSON.parse(this.responseText);     
     console.log(data);
-    var List = "";
+    var Text = "";
     for(var i = 0; i < data.length; i++){
         var item = document.createElement('div');
         item.className = 'bus_item_route';
         item.id = `id${data[i].RouteID}`;
         bus_item.appendChild(item);
-        List = 
+        Text = 
         `<li id='li${data[i].RouteID}'>
-            <a href="bus_route.html?=${data[i].RouteID} ">路線 : ${data[i].RouteID}</a>
-            <p>起點站 : ${data[i].DepartureStopNameZh}</p>
-            <p>終點站 : ${data[i].DestinationStopNameZh}</p>
+            <p><a href="bus_route.html?=${data[i].RouteName.Zh_tw} ">路線 : ${data[i].RouteName.Zh_tw}</a></p>
+            <p>起點 : ${data[i].DepartureStopNameZh}</p>
+            <p>終點 : ${data[i].DestinationStopNameZh}</p>
         </li>`
-        item.innerHTML = List;
+        item.innerHTML = Text;
     }         
 }   
 // 查詢
 var search = document.querySelector('.search');
-document.querySelector('.bus_item1_button').addEventListener('click', searchBus, false);
+document.querySelector('.bus_item1_button').addEventTextener('click', searchBus, false);
 var control = true;
 function searchBus(){
     // searchinput = 輸入的路線號
@@ -46,16 +46,18 @@ function searchBus(){
                 var item = document.createElement('div');
                 item.className = 'bus_item';
                 bus.appendChild(item);
-                List = 
+                Text = 
                 `<div class="bus_item_route">
                     <li id='li${data[i].RouteID}'>
-                        <a href="bus_route.html?=${data[i].RouteID} ">${data[i].RouteID}</a>
-                        <p>起點站 : ${data[i].DepartureStopNameZh}</p>
-                        <p>終點站 : ${data[i].DestinationStopNameZh}</p>
+                    <p><a href="bus_route.html?=${data[i].RouteName.Zh_tw} ">路線 : ${data[i].RouteName.Zh_tw}</a></p>
+                        <p>起點 : ${data[i].DepartureStopNameZh}</p>
+                        <p>終點 : ${data[i].DestinationStopNameZh}</p>
                     </li>
                 </div>`
-                item.innerHTML = List;
+                item.innerHTML = Text;
                 control = true;
             } 
         }  
     }
+
+    // 參考http://ptx.transportdata.tw/PTX
