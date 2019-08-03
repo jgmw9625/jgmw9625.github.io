@@ -26,7 +26,7 @@ xhr1.onload = function() {
 }   
 // 查詢
 var search = document.querySelector('.search');
-document.querySelector('.bus_item1_button').addEventTextener('click', searchBus, false);
+document.querySelector('.bus_item1_button').addEventListener('click', searchBus, false);
 var control = true;
 function searchBus(){
     // searchinput = 輸入的路線號
