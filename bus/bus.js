@@ -42,13 +42,13 @@ function searchBus(){
         bus.removeChild(busitem);
     }
         for(var i = 0; i < data.length; i++){
-            if(searchinput == data[i].RouteID){
+            if(searchinput == data[i].RouteName.Zh_tw){
                 var item = document.createElement('div');
                 item.className = 'bus_item';
                 bus.appendChild(item);
                 Text = 
                 `<div class="bus_item_route">
-                    <li id='li${data[i].RouteID}'>
+                    <li id='li${data[i].RouteName.Zh_tw}'>
                     <p><a href="bus_route.html?=${data[i].RouteName.Zh_tw} ">路線 : ${data[i].RouteName.Zh_tw}</a></p>
                         <p>起點 : ${data[i].DepartureStopNameZh}</p>
                         <p>終點 : ${data[i].DestinationStopNameZh}</p>
