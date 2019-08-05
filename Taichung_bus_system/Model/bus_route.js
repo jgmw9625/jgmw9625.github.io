@@ -178,7 +178,7 @@ function busNowTimeBtn(){
     Busroute_Top_Btn_off.classList.remove('hide');
     setTimeout(function(){
         busRealTimeNearstop(url_busRealTimeNearstop);
-    },200)
+    },500)
     busEstimatedTimeOfArrival(url_busEstimatedTimeOfArrival);
     setIntervalbusStopOfRoute = setInterval(function(){
         // 第二次後重新渲染路線
