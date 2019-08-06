@@ -6,10 +6,14 @@ body{
     position: relative;
     background-color: bisque;
 }
-
 h1{
     text-align: center;
     font-size: 25px;
+}
+.bus_title_text{
+    background-color: #666;
+    border: none;
+    border-bottom: 3px solid black;
 }
 .bus_item{
     display: flex;
@@ -49,6 +53,7 @@ h1{
     display: flex;
     align-items: center;
     flex-direction: column;
+    z-index: 2;
 }
 .Busroute_Top button{
     color: white;
@@ -77,17 +82,25 @@ h1{
     justify-content: center;
     background-color: bisque;
 }
-
-.Busroute_Content_Bustext div{
-    margin: 10px;
+.Busroute_Content_Bustext div, .Busroute_Content_Bus1text div{
     display: flex;
     align-items: center;
-    text-align: center;
 }
-.Busroute_Content_Bus1text div{
-    margin: 10px;
-    display: flex;
-    align-items: center; 
+.item_line_go{
+    position: relative;
+    left: 35px;
+    width: 10px;
+    height: 50px;
+    background-color: skyblue;
+    z-index: 1;
+}
+.item_line_back{
+    position: relative;
+    left: 35px;
+    width: 10px;
+    height: 50px;
+    background-color: greenyellow;
+    z-index: 1;
 }
 .Busroute_Content_Bus{
     display: flex;
@@ -124,22 +137,40 @@ h1{
 }
 @media all and (max-width: 520px){
     .Busroute_Top_Direction h1{
-        font-size: 20px;
+        font-size: 18px;
     }
     .Busroute_Content{
         margin-top: 200px;
     }
     .Busroute_Content_Bustext div, .Busroute_Content_Bus1text div{
-        margin: 10px;
-        align-items: center;
         font-size: 12px;
         flex-shrink: 0;
     }
-    .Busroute_Content_Bus, .Busroute_Content_Bus1{ 
-        width: 40px;
-        height: 40px;
-    }
-    .Busroute_Content_Bus1 p, .Busroute_Content_Bus p{
+    .Busroute_Content_Bustext div ul, .Busroute_Content_Bus1text div ul{
         padding: 10px 0 0 0;
+    }
+    .Busroute_Content_Bus, .Busroute_Content_Bus1{ 
+        width: 45px;
+        height: 45px;
+    }
+    .Busroute_Content_Bus p, .Busroute_Content_Bus1 p{
+        padding: 10px 0 0 0;
+    }
+    .item_line_back{
+        left: 20px;
+        width: 5px;
+        height: 30px;
+        background-color: greenyellow;
+        z-index: 1;
+    }
+    .item_line_go{
+        left: 20px;
+        width: 5px;;
+        height: 30px;
+        background-color: skyblue;
+        z-index: 1;
+    }
+    .bus_site{
+        padding: 0 0 5px 0;
     }
 }
