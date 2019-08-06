@@ -143,13 +143,14 @@ h1{
         margin-top: 200px;
     }
     .Busroute_Content_Bustext div, .Busroute_Content_Bus1text div{
+        height: 45px;
         font-size: 12px;
         flex-shrink: 0;
     }
     .Busroute_Content_Bustext div ul, .Busroute_Content_Bus1text div ul{
         padding: 10px 0 0 0;
     }
-    .Busroute_Content_Bus, .Busroute_Content_Bus1{ 
+    .Busroute_Content_Bus, .Busroute_Content_Bus1{
         width: 45px;
         height: 45px;
     }
