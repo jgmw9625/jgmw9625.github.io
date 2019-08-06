@@ -41,12 +41,12 @@ function renderingRoute(data){
         if(data[i].RouteName.Zh_tw == URLRouteID){
             for(var j = 0; j < data[i].Stops.length; j++ ){
                 switch(data[i].Direction){
-                    case 0: var item = document.createElement('div');
-                            //item.className = `Direction${data[i].Direction} id${data[i].Stops[j].StopID}0`;
-                            //Busroute_Content_Bus.appendChild(item);
-                            var item2 = document.createElement('div');
-                            item2.className = `id${data[i].Stops[j].StopID}0`;
-                            Busroute_Content_Bustext.appendChild(item2);
+                    case 0: var item_line = document.createElement('div');
+                            item_line.className = "item_line_go";
+                            Busroute_Content_Bustext.appendChild(item_line);
+                            var item = document.createElement('div');
+                            item.className = `id${data[i].Stops[j].StopID}0`;
+                            Busroute_Content_Bustext.appendChild(item);
                             text =
                             `
                             <div class="Busroute_Content_Bus ${data[i].Stops[j].StopID}${data[i].Direction}${data[i].Stops[j].StopSequence}"></div>
@@ -54,15 +54,14 @@ function renderingRoute(data){
                             <li>${data[i].Stops[j].StopName.Zh_tw}</li>
                             </ul>
                             `
-                            item2.innerHTML = text;
-                            //item.innerHTML = text;
+                            item.innerHTML = text;
                             break;
-                    case 1: var item = document.createElement('div');
-                            //item.className = `Direction${data[i].Direction} id${data[i].Stops[j].StopID}1`;
-                            //Busroute_Content_Bus1.appendChild(item);
-                            var item2 = document.createElement('div');
-                            item2.className = `id${data[i].Stops[j].StopID}1`;
-                            Busroute_Content_Bus1text.appendChild(item2);
+                    case 1: var item_line = document.createElement('div');
+                            item_line.className = "item_line_back";
+                            Busroute_Content_Bus1text.appendChild(item_line);
+                            var item = document.createElement('div');
+                            item.className = `id${data[i].Stops[j].StopID}1`;
+                            Busroute_Content_Bus1text.appendChild(item);
                             text =
                             `
                             <div class="Busroute_Content_Bus1 ${data[i].Stops[j].StopID}${data[i].Direction}${data[i].Stops[j].StopSequence}"></div>
@@ -70,8 +69,7 @@ function renderingRoute(data){
                                 <li>${data[i].Stops[j].StopName.Zh_tw}</li>
                             </ul>
                             `
-                            item2.innerHTML = text;
-                            //item.innerHTML = text;
+                            item.innerHTML = text;
                             break;
                 }
                 if(data.length == 1){
@@ -178,7 +176,7 @@ function busNowTimeBtn(){
     Busroute_Top_Btn_off.classList.remove('hide');
     setTimeout(function(){
         busRealTimeNearstop(url_busRealTimeNearstop);
-    },500)
+    },200)
     busEstimatedTimeOfArrival(url_busEstimatedTimeOfArrival);
     setIntervalbusStopOfRoute = setInterval(function(){
         // 第二次後重新渲染路線
