@@ -7,12 +7,13 @@ var urlcut = {
         }
         regex = new RegExp('=([0-9 a-z A-Z \u4e00-\u9fa5]+)');
         results = regex.exec(url);
-        console.log(results)
+        //console.log(results)
         return results[1];
     }
 }
+var a;
 var URLRouteID = urlcut.getParameterByName();
-console.log(URLRouteID);
+//console.log(URLRouteID);
 var text = "", data = "", control = false;
 var Busroute_Content = document.querySelector('.Busroute_Content');
 var Busroute_Content_Bustext = document.getElementsByClassName('Busroute_Content_Bustext')[0];
@@ -21,22 +22,9 @@ var url_busStopOfRoute = `https://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/C
 var url_busRealTimeNearstop = `https://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/City/Taichung/${URLRouteID}?$top=300&$format=JSON`;
 var url_busEstimatedTimeOfArrival = `https://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/City/Taichung/${URLRouteID}?$top=1000&$format=JSON`;
 var Busstop, item_bustime;
-// 公車路線 api && 渲染
-function busStopOfRoute(url){
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.send();
-    xhr.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status === 200){
-            data = JSON.parse(this.responseText);
-            //console.log("路線:", data);
-            renderingRoute(data);
-        }
-    }
-}
 // 公車路線渲染
 function renderingRoute(data){
-    console.log('公車路線', data);
+    //console.log('公車路線', data);
     for(var i = 0; i < data.length; i++){
         if(data[i].RouteName.Zh_tw == URLRouteID){
             for(var j = 0; j < data[i].Stops.length; j++ ){
@@ -79,6 +67,21 @@ function renderingRoute(data){
         }     
     }
 }
+// 公車路線 api && 渲染
+function busStopOfRoute(url){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.send();
+    xhr.onreadystatechange = a = function(){
+        if(this.readyState === 4 && this.status === 200){
+            data = JSON.parse(this.responseText);
+            //console.log("路線:", data);
+            renderingRoute(data);
+            return data;
+        }
+    }
+}
+
 // 當前公車位置
 function busRealTimeNearstop(url){
     var xhr1 = new XMLHttpRequest();
@@ -98,11 +101,11 @@ function busRealTimeNearstop(url){
                                     //console.log(data1[i]);
                                     switch(data1[i].A2EventType){
                                         case 0: text =
-                                                `<li>已離站</li>`
+                                                `<i class="fa fa-bus" style="font-size:36px;"></i>`
                                                 item.innerHTML += text;
                                                 break;
                                         case 1: text =
-                                                `<li>進站中</li>`
+                                                `<i class="fa fa-bus" style="font-size:36px;"></i>`
                                                 item.innerHTML += text;
                                                 break;
                                     }
@@ -113,11 +116,11 @@ function busRealTimeNearstop(url){
                                     //console.log(data1[i]);
                                     switch(data1[i].A2EventType){
                                         case 0: text =
-                                                `<li>已離站</li>`
+                                                `<i class="fa fa-bus" style="font-size:36px;"></i>`
                                                 item.innerHTML += text;
                                                 break;
                                         case 1: text =
-                                                `<li>進站中</li>`
+                                                `<i class="fa fa-bus" style="font-size:36px;"></i>`
                                                 item.innerHTML += text;
                                                 break;
                                     }
@@ -136,7 +139,7 @@ function busEstimatedTimeOfArrival(url){
     xhr2.send();
     xhr2.onload = function(){
         var data2 = JSON.parse(this.responseText);
-        console.log("預估到站時間", data2); // 測試數據是否正確
+        //console.log("預估到站時間", data2); // 測試數據是否正確
         for(var i = 0; i < data2.length; i++){
             if(data2[i].EstimateTime != null && data2[i].RouteName.Zh_tw == URLRouteID && data2[i].StopSequence != 1){
                 var EstimateTime = data2[i].EstimateTime/60;
@@ -176,7 +179,7 @@ function busNowTimeBtn(){
     Busroute_Top_Btn_off.classList.remove('hide');
     setTimeout(function(){
         busRealTimeNearstop(url_busRealTimeNearstop);
-    },200)
+    },300)
     busEstimatedTimeOfArrival(url_busEstimatedTimeOfArrival);
     setIntervalbusStopOfRoute = setInterval(function(){
         // 第二次後重新渲染路線
@@ -187,11 +190,13 @@ function busNowTimeBtn(){
             Busroute_Content_Bus1text.innerHTML = "";
             renderingRoute(data);
         }
-        busRealTimeNearstop(url_busRealTimeNearstop);
+        setTimeout(function(){
+            busRealTimeNearstop(url_busRealTimeNearstop);
+        },300)
         busEstimatedTimeOfArrival(url_busEstimatedTimeOfArrival);
         console.log('HI');
         }
-    , 1000 * 300)
+    , 1000 * 10)
 }
 function busNowTimeBtnOff(){
     window.clearInterval(setIntervalbusStopOfRoute);
