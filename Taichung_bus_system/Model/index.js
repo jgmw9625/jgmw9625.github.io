@@ -13,7 +13,7 @@ var renderingBusRoute = function(data){
             <p>終點 : ${data[i].DestinationStopNameZh}</p>
         </li>`
         item.innerHTML = Text;
-    }   
+    }
 }
 // 公車之路線資料 api
 var url_BusRoute = "https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/Taichung?$top=500&$format=JSON";
@@ -42,24 +42,21 @@ function searchBusRoute(){
         control = false;
         bus.removeChild(busitem);
     }
-        for(var i = 0; i < data.length; i++){   
-            if(bus_title_text_input == data[i].RouteName.Zh_tw){
-                var item = document.createElement('div');
-                item.className = 'bus_item';
-                bus.appendChild(item);
-                Text = 
-                `<div class="bus_item_route">
-                    <li id='li${data[i].RouteName.Zh_tw}'>
-                    <p><a href="bus_route.html?=${data[i].RouteName.Zh_tw} ">路線 : ${data[i].RouteName.Zh_tw}</a></p>
-                        <p>起點 : ${data[i].DepartureStopNameZh}</p>
-                        <p>終點 : ${data[i].DestinationStopNameZh}</p>
-                    </li>
-                </div>`
-                item.innerHTML = Text;
-                control = true;
-            }
-            if(bus_title_text_input === ""){
-                renderingBusRoute(data);
+    var item = document.createElement('div');
+    item.className = 'bus_item';
+    bus.appendChild(item);
+    for(var i = 0; i < data.length; i++){   
+        if(bus_title_text_input == data[i].RouteName.Zh_tw){    
+            Text = 
+            `<div class="bus_item_route">
+                <li id='li${data[i].RouteName.Zh_tw}'>
+                <p><a href="bus_route.html?=${data[i].RouteName.Zh_tw} ">路線 : ${data[i].RouteName.Zh_tw}</a></p>
+                    <p>起點 : ${data[i].DepartureStopNameZh}</p>
+                    <p>終點 : ${data[i].DestinationStopNameZh}</p>
+                </li>
+            </div>`
+            item.innerHTML = Text;
+            control = true;
             }
         }  
     }
