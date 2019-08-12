@@ -7,10 +7,12 @@ body{
     background-color: bisque;
 }
 h1{
+    color: white;
     text-align: center;
     font-size: 25px;
 }
 .bus_title_text{
+    color: white;
     background-color: #666;
     border: none;
     border-bottom: 3px solid black;
@@ -21,7 +23,7 @@ h1{
     align-content: center;
     flex-wrap: wrap;
     width: 100%;
-    margin-top: 80px;
+    margin-top: 110px;
 }
 .bus_item_route{
     line-height: 15px;;
@@ -31,7 +33,6 @@ h1{
     margin: 20px;
     background-color: skyblue;
     width: 200px;
-    
 }
 .bus_item_route a{
     text-decoration: none;
@@ -43,13 +44,15 @@ h1{
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: #666;
+    background-color: #000;
+    opacity: 0.8;
 }
 .Busroute_Top {
     top: 0px;
     width: 100%;
     position: fixed;
-    background-color: #666;
+    background-color: #000;
+    opacity: 0.8;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -126,7 +129,6 @@ h1{
 }
 .bus_site{
     list-style: none;
-    color: white;
     background-color: red;
 }
 .bus_site p{
@@ -150,7 +152,7 @@ h1{
     .Busroute_Content_Bustext div ul, .Busroute_Content_Bus1text div ul{
         padding: 10px 0 0 0;
     }
-    .Busroute_Content_Bus, .Busroute_Content_Bus1{
+    .Busroute_Content_Bus, .Busroute_Content_Bus1{ 
         width: 45px;
         height: 45px;
     }
