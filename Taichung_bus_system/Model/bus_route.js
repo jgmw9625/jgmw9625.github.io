@@ -196,7 +196,7 @@ function busNowTimeBtn(){
         busEstimatedTimeOfArrival(url_busEstimatedTimeOfArrival);
         console.log('HI');
         }
-    , 1000 * 10)
+    , 1000 * 60)
 }
 function busNowTimeBtnOff(){
     window.clearInterval(setIntervalbusStopOfRoute);
